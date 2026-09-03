@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IT Desk — Internal IT Knowledge Base</title>
+<meta name="description" content="Internal IT reference: credentials, servers, network details, and configuration guides." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ==================== LOGIN SCREEN ==================== -->
+<main id="loginScreen" class="login-screen">
+  <div class="login-panel">
+    <div class="login-brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l7-7 3 3-4 4h9v4h-9l4 4-3 3-7-7Z"/></svg>
+      </div>
+      <div>
+        <p class="brand-name">IT Desk</p>
+        <p class="brand-tagline">Internal IT knowledge base</p>
+      </div>
+    </div>
+
+    <h1 class="login-title">Sign in</h1>
+    <p class="login-subtitle">Use your assigned IT desk account to continue.</p>
+
+    <form id="loginForm" class="login-form" novalidate>
+      <div class="field">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" name="username" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="password" autocomplete="current-password" required />
+      </div>
+      <p id="loginError" class="login-error" role="alert" hidden></p>
+      <button type="submit" class="btn-primary btn-block">Sign in</button>
+    </form>
+
+    <div class="login-demo-note">
+      <p><strong>Emergency Extension No:</strong></p>
+      <ul>
+        <li><span class="mono">Shehan Samarasena</span> - <span class="mono">1753</span></li>
+        <li><span class="mono">Shantha Bandara</span> - <span class="mono">2408</span></li>
+        <li><span class="mono">Danuja Sankajith</span> - <span class="mono">1716</span></li>
+        <br>
+        <li><span class="mono">Service Desk</span> - <span class="mono">3000</span></li>
+        <li><span class="mono">NOC (Network)</span> - <span class="mono">1705</span></li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<!-- ==================== APP SHELL ==================== -->
+<div id="app" hidden>
+
+  <button type="button" id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true" tabindex="-1"></button>
+
+  <aside class="sidebar" aria-label="Primary navigation">
+    <div class="sidebar-brand">
+      <div class="brand-mark brand-mark-sm" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l7-7 3 3-4 4h9v4h-9l4 4-3 3-7-7Z"/></svg>
+      </div>
+      <span class="brand-name">IT Desk</span>
+    </div>
+    <nav id="sidebarNav" class="sidebar-nav" aria-label="Sections"></nav>
+    <p class="sidebar-footnote">Internal use only</p>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <button type="button" id="menuToggle" class="icon-btn sidebar-menu-btn" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>
+      </button>
+
+      <h1 id="pageTitle" class="page-title">Dashboard</h1>
+
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
+        <input type="search" id="globalSearch" placeholder="Search servers, credentials, licenses, configuration…" aria-label="Search all IT information" />
+        <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+        </button>
+      </div>
+
+      <div class="topbar-actions">
+        <button type="button" id="themeToggle" class="btn-ghost"></button>
+        <div class="user-chip">
+          <span class="user-avatar" id="userAvatar" aria-hidden="true">👤</span>
+          <span class="user-meta">
+            <span id="currentUserName" class="user-name"></span>
+            <span id="currentUserRole" class="user-role"></span>
+          </span>
+        </div>
+        <button type="button" id="logoutBtn" class="btn-ghost" aria-label="Log out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20H5.5A1.5 1.5 0 0 1 4 18.5v-13A1.5 1.5 0 0 1 5.5 4H9"/><path d="M14 16l4.5-4-4.5-4M18.3 12H9"/></svg>
+          <span>Log out</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div id="statsBar" class="stats-bar" hidden></div>
+      <div id="filterBar" class="filter-bar" hidden></div>
+
+      <div class="content-header">
+        <p id="resultCount" class="result-count"></p>
+      </div>
+
+      <div id="contentGrid" class="card-grid"></div>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
+        <p>No results found.</p>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <p>Created by: Thanushkar Sivakumar</p>
+      <p class="app-footer-sub">IT Desk — internal reference prototype · &copy; <span id="currentYear"></span></p>
+    </footer>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
