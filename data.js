@@ -183,7 +183,14 @@ const credentials = [
     password: "1234",
     notes: `This credential is used for the Image Server and a dedicated PC used for external HDD/SSD recovery and other purposes.`
   },
-  
+  {
+    id: "cred-13",
+    device: "ACER Aspire Z3-615",
+    category: "Desktop",
+    username: "admin",
+    password: "ulWin11@615z3",
+    notes: ``
+  },
 ];
 
 /* ---------- Configuration guides ----------
